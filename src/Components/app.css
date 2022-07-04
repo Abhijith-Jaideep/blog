@@ -1,0 +1,15 @@
+.app{
+    display: flex;
+}
+
+.app div{
+    width: 100%;
+}
+.app .main-page{
+    height: 93%;    
+}
+
+.app .footer {
+    border-top: 1px solid black
+}
+

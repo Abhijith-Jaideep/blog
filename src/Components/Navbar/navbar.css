@@ -1,0 +1,20 @@
+.navbar .container-fluid {
+    flex-direction: column; 
+   
+}
+
+.navbar{
+    height: 100vh;
+    align-items: end;
+    padding-bottom: 5%;
+    border-right: 1px solid black;
+}
+
+.navbar .navbar-brand{
+    
+    width: 100%;
+}
+
+.navbar .navbar-brand:hover,.navbar-brand:active{
+    color: orangered;
+}
