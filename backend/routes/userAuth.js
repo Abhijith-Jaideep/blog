@@ -7,48 +7,57 @@ const fetchUser = require("../middleware/fetchUser")
 
 
 router.post("/signup", async (req, res) => {
-    const { username, password } = req.body
+    try {
 
-    const search = await usermodel.findOne({ username })
-    if (search) return res.status(400).json({ msg: "User already exists" })
+        const { username, password } = req.body
 
-    const salt = await bcrypt.genSalt(10)
-    const hashed = await bcrypt.hash(password, salt)
+        const search = await usermodel.findOne({ username })
+        if (search) return res.status(400).json({ msg: "User already exists" })
 
-    const user = await usermodel.create({
-        username, password: hashed
-    })
+        const salt = await bcrypt.genSalt(10)
+        const hashed = await bcrypt.hash(password, salt)
 
-    if (!user) return res.status(400).json({ msg: "User Not Created" })
+        const user = await usermodel.create({
+            username, password: hashed
+        })
 
-    return res.json({ msg: "User created Successfully" })
+        if (!user) return res.status(400).json({ msg: "User Not Created" })
+
+        return res.json({ msg: "User created Successfully" })
+    } catch (e) { res.status(500) }
 })
 
 router.post("/login", async (req, res) => {
-    const { username, password } = req.body
-    
-    const search = await usermodel.findOne({ username })
-    if (!search) return res.status(401).json({token:null})
+    try {
 
-    const passmatch = await bcrypt.compare(password, search.password)
-    if (!passmatch) return res.status(401).json({token:null})
+        const { username, password } = req.body
 
-    const data = {
-        id: search._id
-    }
+        const search = await usermodel.findOne({ username })
+        if (!search) return res.status(401).json({ token: null })
 
-    const token = jwt.sign(data, "shhh")
+        const passmatch = await bcrypt.compare(password, search.password)
+        if (!passmatch) return res.status(401).json({ token: null })
 
-    return res.json({token})
+        const data = {
+            id: search._id
+        }
+
+        const token = jwt.sign(data, "shhh")
+
+        return res.json({ token })
 
 
+    } catch (e) { res.status(500) }
 })
 
-router.get("/fetch", fetchUser, async(req, res) => {
-    const user = await usermodel.findById(req.id)
-    if(!user) return res.status(400).json({msg:"user not found"})
+router.get("/fetch", fetchUser, async (req, res) => {
+    try {
 
-    return res.json(user)
+        const user = await usermodel.findById(req.id)
+        if (!user) return res.status(400).json({ msg: "user not found" })
+
+        return res.json(user)
+    } catch (e) { res.status(500) }
 })
 
 

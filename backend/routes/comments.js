@@ -3,64 +3,76 @@ const fetchUser = require("../middleware/fetchUser")
 const commentmodel = require("../models/Comments")
 const router = express.Router()
 
-router.get("/fetchComments/:id",async(req,res)=>{
-    const postid= req.params.id
+router.get("/fetchComments/:id", async (req, res) => {
+    try {
 
-    const comments = await commentmodel.find({postid})
+        const postid = req.params.id
 
-    if(!comments) return res.status(400).json({msg:"no comments for this post"})
+        const comments = await commentmodel.find({ postid })
 
-    return res.json(comments)
+        if (!comments) return res.status(400).json({ msg: "no comments for this post" })
+
+        return res.json(comments)
+    } catch (e) { res.status(500) }
 })
 
-router.post("/postComment/:id",fetchUser,async (req, res) => {
-    const postid = req.params.id
-    const userid = req.id
-    const {comment} = req.body
+router.post("/postComment/:id", fetchUser, async (req, res) => {
+    try {
 
-    const completed = await commentmodel.create({
-        postid,userid,comment
-    })
+        const postid = req.params.id
+        const userid = req.id
+        const { comment } = req.body
 
-    if(!completed) return res.status(400).json({msg:"comment could not be posted"})
+        const completed = await commentmodel.create({
+            postid, userid, comment
+        })
 
-    res.json({msg:"comment posted"})
+        if (!completed) return res.status(400).json({ msg: "comment could not be posted" })
 
+        res.json({ msg: "comment posted" })
+
+    } catch (e) { res.status(500) }
 })
 
-router.put("/updateComment/:commentid",fetchUser,async (req, res) => {
-    const commentid = req.params.commentid
-    const userid = req.id
-    const {comment} = req.body
+router.put("/updateComment/:commentid", fetchUser, async (req, res) => {
+    try {
 
-    const foundComment = await commentmodel.findOne({commentid})
+        const commentid = req.params.commentid
+        const userid = req.id
+        const { comment } = req.body
 
-    if(foundComment.userid != userid) return res.status(401).json({msg:"illegal operation"})
+        const foundComment = await commentmodel.findOne({ commentid })
 
-    const updated = await commentmodel.updateOne({commentid},{
-        comment
-    })
+        if (foundComment.userid != userid) return res.status(401).json({ msg: "illegal operation" })
 
-    if(!updated) return res.status(500).json({msg:"could not update comment"})
+        const updated = await commentmodel.updateOne({ commentid }, {
+            comment
+        })
 
-    res.json({msg:"comment updated"})
+        if (!updated) return res.status(500).json({ msg: "could not update comment" })
 
+        res.json({ msg: "comment updated" })
+
+    } catch (e) { res.status(500) }
 })
 
-router.delete("/deleteComment/:commentid",fetchUser,async (req, res) => {
-    const userid = req.id
-    const commentid = req.params.commentid
+router.delete("/deleteComment/:commentid", fetchUser, async (req, res) => {
+    try {
 
-    const foundComment = await commentmodel.findOne({commentid})
+        const userid = req.id
+        const commentid = req.params.commentid
 
-    if(foundComment.userid != userid) return res.status(401).json({msg:"illegal operation"})
+        const foundComment = await commentmodel.findOne({ commentid })
 
-    const deleted = await commentmodel.deleteOne({commentid})
+        if (foundComment.userid != userid) return res.status(401).json({ msg: "illegal operation" })
 
-    if(!deleted) return res.status(500).json({msg:"could not delete comment"})
+        const deleted = await commentmodel.deleteOne({ commentid })
 
-    res.json({msg:"comment deleted"})
+        if (!deleted) return res.status(500).json({ msg: "could not delete comment" })
 
+        res.json({ msg: "comment deleted" })
+
+    } catch (e) { res.status(500) }
 })
 
 

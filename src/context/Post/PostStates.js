@@ -5,6 +5,7 @@ import PostContext from './PostContext'
 const PostStates = (props) => {
 
     const [posts, setposts] = useState([])
+    const [userpost,setuserpost] = useState([])
 
     const fetchAllPosts = async () => {
         const response = await fetch("http://localhost:5000/api/posts/allPosts", {
@@ -13,6 +14,18 @@ const PostStates = (props) => {
         const json = await response.json()
         setposts(json)
 
+    }
+
+    const fetchUserPosts = async()=>{
+        const response = await fetch("http://localhost:5000/api/posts/getUserPosts",{
+            method :"GET",
+            headers:{
+                "Content-Type":"application/json",
+                "auth-token":localStorage.getItem("token")
+            }
+        })
+
+        setuserpost(await response.json())
     }
 
     const createPost = async (title,description)=>{
@@ -30,7 +43,7 @@ const PostStates = (props) => {
 
 
     return (
-        <PostContext.Provider value={{ posts, fetchAllPosts ,createPost}}>
+        <PostContext.Provider value={{ posts,userpost,fetchUserPosts, fetchAllPosts ,createPost}}>
             {props.children}
         </PostContext.Provider>
     )
