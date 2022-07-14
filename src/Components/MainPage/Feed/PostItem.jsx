@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { useContext } from 'react'
+import AlertContext from '../../../context/Alert/AlertContext'
 import postimg from "./postimg.jpg"
 
 const PostItem = (props) => {
 
     const [date, setdate] = useState('')
+
+    const context = useContext(AlertContext)
+    const {mode} = context
 
     useEffect(() => {
         setdate(new Date(props.timestamp).toLocaleString("en-IN", { timeZone: 'Asia/Kolkata' }))
@@ -12,10 +17,10 @@ const PostItem = (props) => {
 
     return (
         <div className='container mt-3'>
-            <div className="card">
-                <div className="card-header d-flex" style={{ justifyContent: "space-between", backgroundColor: "white" }}>
+            <div className={`card bg-${mode} text-${mode==="dark"?"white":"dark"}`}>
+                <div className="card-header d-flex" style={{ justifyContent: "space-between", backgroundColor:mode==="dark"?"black":"darkorange" }}>
                     <div style={{width:"fit-content",fontWeight:"bold"}}>
-                    <i className="fa-solid fa-circle-user" style={{color:"orangered"}}></i> {props.name}
+                    <i className="fa-solid fa-circle-user"></i> {props.name}
                     </div>
                     <div style={{width:"fit-content"}}>
                         {date}

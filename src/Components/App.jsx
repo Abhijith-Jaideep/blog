@@ -17,46 +17,50 @@ import PostStates from '../context/Post/PostStates'
 
 const App = () => {
 
-  const context = useContext(AlertContext)
-  const { msg, show } = context
+	const context = useContext(AlertContext)
+	const { msg, show, mode } = context
 
-  return (
-
-
-    <UserStates>
-      
-      {show && <Alert msg={msg} />}
-      <Router>
-
-        <Routes>
-          <Route path="/*" element={
-            <div className="app">
-
-              <NavBar />
+	return (
 
 
-              <div>
-                <div className='main-page'>
-                  <MainPage />
-                </div>
+		<UserStates>
 
-                <div className="footer">
-                  <Footer />
-                </div>
+			{show && <Alert msg={msg} />}
 
-              </div>
-            </div>
-          } />
+			<Router>
 
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/write" element={<PostStates><WritePost /></PostStates>} />
-          <Route path="/profile" element={<PostStates><Profile/></PostStates>}/>
-        </Routes>
+				<Routes>
+					<Route path="/*" element={
 
-      </Router >
-    </UserStates>
-  )
+						<div className="app">
+
+							<NavBar />
+
+							<div className="wrapper">
+
+								<div className='main-page'>
+									<MainPage mode={mode} />
+								</div>
+
+								<div className="footer">
+									<Footer mode={mode} />
+								</div>
+
+							</div>
+
+						</div>
+					} />
+
+					<Route path="/signup" element={<Signup />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/write" element={<PostStates><WritePost /></PostStates>} />
+					<Route path="/profile" element={<PostStates><Profile /></PostStates>} />
+
+				</Routes>
+
+			</Router >
+		</UserStates>
+	)
 }
 
 export default App

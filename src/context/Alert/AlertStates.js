@@ -5,6 +5,7 @@ const AlertStates = (props) => {
 
     const [show, setshow] = useState(false)
     const [msg, setmsg] = useState({ msg: "", type: "" })
+    const [mode,setmode] = useState("light")
 
     const showAlert = (msg, type) => {
         setmsg({ msg, type })
@@ -12,8 +13,15 @@ const AlertStates = (props) => {
         setTimeout(()=>{setshow(false)}, 2000)
     }
 
+    const changeMode=()=>{
+        if(mode==="light")
+            setmode("dark")
+        else
+            setmode("light")
+    }
+
     return (
-        <AlertContext.Provider value={{ msg, show, showAlert }}>
+        <AlertContext.Provider value={{ msg, show, showAlert ,mode,changeMode}}>
             {props.children}
         </AlertContext.Provider>
     )

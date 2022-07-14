@@ -12,17 +12,17 @@
 }
 
 .Landing h1 {
-    color: rgb(255, 102, 0);
-
-}
-.Landing h2{
-    color: white;
-    font-style: italic;
+    color:darkorange;
+    
 }
 
 .Landing span , .Landing p{
     color:grey;
     font-weight: bold;
+}
+.Landing h2{
+    color: white;
+    font-style: italic;
 }
 
 .Landing .image {

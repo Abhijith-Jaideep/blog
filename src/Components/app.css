@@ -2,14 +2,18 @@
     display: flex;
 }
 
-.app div{
+.app .wrapper{
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    justify-content: space-between;
 }
+
 .app .main-page{
-    height: 93%;    
+    height: 100%;
 }
 
 .app .footer {
-    border-top: 1px solid black
+    border-top: 1px solid black;
 }
 

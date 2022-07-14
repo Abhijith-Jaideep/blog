@@ -23,7 +23,7 @@ const Feed = () => {
   }, [])
 
   return (
-    <div style={{ height: "92vh" ,overflowY:"scroll"}}>
+    <div style={{ height: "93vh" ,overflowY:"scroll"}}>
       {loading&&<Spinner />}
       {
         posts.map((element) => {

@@ -7,7 +7,7 @@ const NavBar = () => {
 
     const [token, settoken] = useState("")
     const context = useContext(AlertContext)
-    const {showAlert} = context
+    const { showAlert,changeMode,mode } = context
 
     useEffect(() => {
 
@@ -18,12 +18,22 @@ const NavBar = () => {
     const deletetoken = () => {
         settoken("")
         localStorage.removeItem("token")
-        showAlert("Logged out Successfully","success")
+        showAlert("Logged out Successfully", "success")
     }
+
     return (
-        <nav className="navbar bg-light">
-            <div className="container-fluid">
+        <nav className={`navbar navbar-${mode} bg-${mode}`} >
+
+            <div className="form-check form-switch">
+                <input className="form-check-input" onClick={changeMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"  checked={mode==="dark"?true:false}/>
+                <span style={{color:mode==="dark"?"white":"black"}}>Dark </span>
+                <i style={{color:mode==="dark"?"white":"black"}} class="fa-solid fa-moon"></i>
+            </div>
+
+            <div className='nav-links'>
+
                 <Link className="navbar-brand" to="/"><i className="fa-solid fa-house-chimney"></i> Home</Link>
+
                 {!token && <>
                     <Link className="navbar-brand" to="/signup"><i className="fa-solid fa-user-plus"></i> Signup</Link>
                     <Link className="navbar-brand" to="/login"><i className="fa-solid fa-user-pen"></i> Login</Link>
@@ -33,12 +43,12 @@ const NavBar = () => {
                     <Link className="navbar-brand" to="/write"><i className="fa-solid fa-feather"></i> Write</Link>
                     <Link className="navbar-brand" to="/feed"><i className="fa-solid fa-book-open"></i> View Feed</Link>
                     <Link className="navbar-brand" to="/profile"><i className="fa-solid fa-address-card"></i> View Profile</Link>
-                    
+
                     <Link className="navbar-brand" onClick={deletetoken} to="/"><i className="fa-solid fa-user-pen"></i> Logout</Link>
-                    
                 </>
                 }
             </div>
+
         </nav>
     )
 }
