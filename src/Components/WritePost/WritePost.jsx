@@ -12,7 +12,7 @@ const WritePost = () => {
 
 
   const {createPost} = context
-  const{showAlert} = alertcontext
+  const{showAlert,mode} = alertcontext
 
   const [data, setdata] = useState({title:"",description:""})
 
@@ -28,7 +28,7 @@ const WritePost = () => {
   }
 
   return (
-    <div>
+    <div className={`bg-${mode} text-${mode === "light" ? "dark" : "light"}`} style={{ height: '100%' }}>
       <button style={{ backgroundColor: "orangered" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
       <form className='container mt-5' onSubmit={submit}>
         <div className="mb-3">

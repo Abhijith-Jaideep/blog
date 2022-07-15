@@ -8,7 +8,7 @@ const usermodel = require("../models/User")
 router.get("/allPosts", async (req, res) => {
     try {
 
-        const posts = await postmodel.find()
+        const posts = await postmodel.find().sort({'timestamp':-1})
         if (!posts) return res.status(400).json({ msg: "no posts to display" })
 
         return res.json(posts)
@@ -22,7 +22,7 @@ router.get("/getUserPosts", fetchUser, async (req, res) => {
 
         const userid = req.id
 
-        const posts = await postmodel.find({ userid })
+        const posts = await postmodel.find({ userid }).sort({'timestamp':-1})
 
         if (!posts) return res.status(400).json({ msg: "No posts for this user" })
 

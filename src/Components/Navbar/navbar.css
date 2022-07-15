@@ -1,7 +1,7 @@
 .navbar{
     height: 100vh;
     display: flex;
-    border-right: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     width: min-content;
     flex-direction: column;
     justify-content: space-between;
@@ -19,5 +19,5 @@
 }
 
 .navbar .navbar-brand:hover,.navbar-brand:active{
-    color: orangered;
+    color: darkorange;
 }

@@ -10,7 +10,7 @@ const Login = () => {
   const usercontext = useContext(UserContext)
   const alertcontext = useContext(AlertContext)
   const { login } = usercontext
-  const { showAlert } = alertcontext
+  const { showAlert,mode } = alertcontext
 
   const [info, setinfo] = useState({ username: "", password: "" })
 
@@ -34,8 +34,8 @@ const Login = () => {
   }
 
   return (
-    <>
-      <button style={{ backgroundColor: "orangered" }}  className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
+    <div className={`bg-${mode} text-${mode === "light" ? "dark" : "light"}`} style={{ height: '100%' }}>
+      <button style={{ backgroundColor: "darkorange" }}  className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
       <div className="container">
         <form onSubmit={submit} autoComplete="off">
           <h1 align="center">Login with your credentials</h1>
@@ -49,11 +49,11 @@ const Login = () => {
           </div>
 
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <button type="submit" className="btn btn-primary w-50 p-3 " style={{ borderRadius: "16px", fontWeight: "bold", backgroundColor: "orangered" }}>Login</button>
+            <button type="submit" className="btn btn-primary w-50 p-3 " style={{ borderRadius: "16px", fontWeight: "bold", backgroundColor: "darkorange" }}>Login</button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

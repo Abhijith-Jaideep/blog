@@ -10,7 +10,7 @@ const Signup = () => {
   const context = useContext(UserContext)
   const alertcontext = useContext(AlertContext)
   const { signup } = context
-  const {showAlert} = alertcontext
+  const { showAlert, mode } = alertcontext
 
   const [info, setinfo] = useState({ username: "", password: "" })
 
@@ -22,13 +22,13 @@ const Signup = () => {
   const submit = (e) => {
     e.preventDefault()
     signup(info.username, info.password)
-    showAlert("User signup registration successfull","primary")
+    showAlert("User signup registration successfull", "primary")
     navigate(-1)
   }
 
   return (
-    <>
-      <button style={{backgroundColor:"orangered"}} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
+    <div className={`bg-${mode} text-${mode === "light" ? "dark" : "light"}`} style={{ height: '100%' }}>
+      <button style={{ backgroundColor: "darkorange" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
       <div className="container">
         <form onSubmit={submit} autoComplete="off">
           <h1 align="center">Sign up with a user name</h1>
@@ -42,12 +42,12 @@ const Signup = () => {
             <input type="password" minLength={8} required className="form-control" name="password" onChange={onChange} id="password" />
           </div>
 
-          <div style={{display:"flex",justifyContent:"center"}}>
-            <button type="submit" className="btn btn-primary w-50 p-3 " style={{borderRadius:"16px",fontWeight:"bold",backgroundColor:"orangered"}}>Signup</button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button type="submit" className="btn btn-primary w-50 p-3 " style={{ borderRadius: "16px", fontWeight: "bold", backgroundColor: "darkorange" }}>Signup</button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

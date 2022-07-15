@@ -8,7 +8,7 @@ router.get("/fetchComments/:id", async (req, res) => {
 
         const postid = req.params.id
 
-        const comments = await commentmodel.find({ postid })
+        const comments = await commentmodel.find({ postid }).sort({'timestamp':-1})
 
         if (!comments) return res.status(400).json({ msg: "no comments for this post" })
 
