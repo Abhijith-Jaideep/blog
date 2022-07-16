@@ -82,7 +82,7 @@ router.put("/updatePost/:id", fetchUser, async (req, res) => {
         if (post.userid != userid) return res.status(401).json({ msg: "illegal operation" })
 
         const updated = await postmodel.updateOne({ _id: postid }, {
-            title, description
+            title, description,timestamp:Date.now()
         })
 
         if (!updated) return res.json

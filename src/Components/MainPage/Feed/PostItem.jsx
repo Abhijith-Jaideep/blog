@@ -37,12 +37,8 @@ const PostItem = (props) => {
                     <h3>{props.title}</h3>
                     <div>
                         <p className="card-text">{props.description}</p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate molestias veritatis saepe ratione. Nobis illo laborum doloremque eum necessitatibus at temporibus aspernatur molestiae culpa. Consequatur id ab quo at deleniti!
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni velit soluta odit mollitia aspernatur blanditiis nostrum iste, cupiditate sunt labore ullam rem temporibus fugit eaque tempore illo. Id, voluptatibus delectus!
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam qui accusantium fugit libero velit aspernatur id nobis voluptate repudiandae! Ducimus alias nulla impedit eligendi delectus itaque sequi placeat ea obcaecati.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo veniam quasi, doloribus delectus ab sequi rem voluptatibus quidem! Reiciendis, mollitia ducimus velit fuga quaerat quisquam vero magni debitis a ipsam?
-                        </p>
+                        <i className="fa-solid fa-comment-dots fa-2x"></i>
+                        <i className="fa-solid fa-heart fa-2x mx-5"></i>
                     </div>
                 </div>
             </div>

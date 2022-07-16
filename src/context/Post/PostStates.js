@@ -52,9 +52,22 @@ const PostStates = (props) => {
 
     }
 
+    const updatePost = async (title,description,id)=>{
+
+        const data = {title,description}
+        await fetch(`http://localhost:5000/api/posts/updatePost/${id}`,{
+            method:"PUT",
+            headers:{
+                "Content-Type":"application/json",
+                "auth-token":localStorage.getItem('token')
+            },
+            body:JSON.stringify(data)
+        })
+    }
+
 
     return (
-        <PostContext.Provider value={{ posts,userpost,fetchUserPosts, fetchAllPosts ,createPost,deletePost}}>
+        <PostContext.Provider value={{ posts,userpost,fetchUserPosts, fetchAllPosts ,createPost,deletePost,updatePost}}>
             {props.children}
         </PostContext.Provider>
     )
