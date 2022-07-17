@@ -26,7 +26,7 @@ const Landing = (props) => {
            
             <h2 className='mb-3'>The home for great readers and writers</h2>
 
-            <Link to="/feed"><button className='btn mb-2 btn-dark' style={{ backgroundColor: "orangered" }}>Start Reading</button></Link>
+            <Link to="/feed"><button className='btn mb-2 btn-dark' style={{ backgroundColor: "darkturquoise" }}>Start Reading</button></Link>
             <Link to={localStorage.getItem("token") ? "/write" : "/login"}><button className="btn btn-secondary">Write A Post</button></Link>
 
           </div>

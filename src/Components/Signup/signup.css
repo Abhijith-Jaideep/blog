@@ -1,0 +1,46 @@
+.signup h1 {
+    color: darkturquoise;
+}
+
+.signup .btn {
+    background-color: darkturquoise;
+}
+
+.signup .signupcard {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 75vh;
+}
+
+.signup .pic {
+    background-color: darkturquoise;
+}
+
+
+.signup form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup .signupform {
+    width: 50%;
+    height: 100%;
+}
+
+.signup .signupbtn {
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    background-color: darkturquoise;
+}
+
+@media(max-width:1000px) {
+    .signup .pic {
+        display: none;
+    }
+
+    .signup .signupform {
+        width: 100%;
+    }
+}

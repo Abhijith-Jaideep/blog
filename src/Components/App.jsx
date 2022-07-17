@@ -31,24 +31,26 @@ const App = () => {
 
 				<Routes>
 					<Route path="/*" element={
+						<div>
+							<div className="app">
 
-						<div className="app">
+								<NavBar />
 
-							<NavBar />
+								<div className="wrapper">
 
-							<div className="wrapper">
+									<div className='main-page'>
+										<MainPage mode={mode} />
+									</div>
 
-								<div className='main-page'>
-									<MainPage mode={mode} />
-								</div>
-
-								<div className="footer">
-									<Footer mode={mode} />
 								</div>
 
 							</div>
 
+							<div className="footer">
+								<Footer mode={mode} />
+							</div>
 						</div>
+
 					} />
 
 					<Route path="/signup" element={<Signup />} />

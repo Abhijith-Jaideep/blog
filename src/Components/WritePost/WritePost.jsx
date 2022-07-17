@@ -29,7 +29,7 @@ const WritePost = () => {
 
   return (
     <div className={`bg-${mode} text-${mode === "light" ? "dark" : "light"}`} style={{ height: '100%' }}>
-      <button style={{ backgroundColor: "orangered" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
+      <button style={{ backgroundColor: "darkturquoise" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
       <form className='container mt-5' onSubmit={submit}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
@@ -40,7 +40,7 @@ const WritePost = () => {
           <textarea name="description" className="form-control" onChange = {onChange} id="description" />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-            <button type="submit" className="btn btn-primary w-50 p-3 " style={{ borderRadius: "16px", fontWeight: "bold", backgroundColor: "orangered" }}>Publish</button>
+            <button type="submit" className="btn btn-primary w-50 p-3 " style={{ borderRadius: "16px", fontWeight: "bold", backgroundColor: "darkturquoise" }}>Publish</button>
           </div>
       </form>
     </div>

@@ -1,16 +1,16 @@
-.navbar{
-    height: 100vh;
+.navbar {
+    height: 100%;
     display: flex;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0,0,0, 0.48) 6px 2px 16px 0px;
     width: min-content;
     flex-direction: column;
     justify-content: space-between;
-    padding:1%;
-    
+    padding: 1%;
+
 }
 
 
-.navbar .nav-links{
+.navbar .nav-links {
     padding-bottom: 40%;
     display: flex;
     flex-direction: column;
@@ -19,6 +19,7 @@
     justify-content: space-evenly;
 }
 
-.navbar .navbar-brand:hover,.navbar-brand:active{
-    color: darkorange;
+.navbar .navbar-brand:hover,
+.navbar-brand:active {
+    color: white;
 }

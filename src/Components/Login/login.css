@@ -1,0 +1,43 @@
+.Login h1{
+    color: darkturquoise;
+}
+
+.Login .btn{
+    background-color: darkturquoise;
+}
+
+.Login .logincard{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    height: 75vh;   
+}
+
+.Login .pic{
+    background-color: darkturquoise;
+}
+
+.Login .loginform{
+    width: 50%;
+    height: 100%;
+}
+
+.Login form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Login .loginbtn{
+    border: none;
+    border-radius: 16px;
+    font-weight: bold;
+    background-color: darkturquoise; 
+}
+
+@media(max-width:1000px){
+    .Login .pic{
+        display: none;
+    }
+    .Login .loginform{
+        width: 100%;
+    }
+}

@@ -18,7 +18,7 @@ const PostItem = (props) => {
     return (
         <div className='container my-3 d-flex' style={{ justifyContent: "center" }}>
             <div className={`card w-75 bg-${mode} text-${mode === "dark" ? "white" : "dark"}`} style={{ boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px" }}>
-                <div className="card-header d-flex" style={{ justifyContent: "space-between", backgroundColor: mode === "dark" ? "black" : "darkorange" }}>
+                <div className="card-header d-flex" style={{ justifyContent: "space-between", backgroundColor: mode === "dark" ? "black" : "darkturquoise" }}>
 
                     <div style={{ width: "fit-content", fontWeight: "bold" }}>
                         <i className="fa-solid fa-circle-user"></i> {props.name}
@@ -37,8 +37,8 @@ const PostItem = (props) => {
                     <h3>{props.title}</h3>
                     <div>
                         <p className="card-text">{props.description}</p>
-                        <i className="fa-solid fa-comment-dots fa-2x"></i>
-                        <i className="fa-solid fa-heart fa-2x mx-5"></i>
+                        <i className="fa-solid fa-comment-dots fa-2x" style={{cursor:"pointer"}}></i>
+                        <i className="fa-solid fa-heart fa-2x mx-5" style={{cursor:"pointer"}}></i>
                     </div>
                 </div>
             </div>

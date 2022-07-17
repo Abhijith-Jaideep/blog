@@ -22,7 +22,7 @@ const NavBar = () => {
     }
 
     return (
-        <nav className={`navbar navbar-${mode} bg-${mode}`}>
+        <nav className={`navbar navbar-${mode} `} style={{backgroundColor:mode==="light"?"darkturquoise":"#212529"}}>
 
             <div className="form-check form-switch">
                 <input className="form-check-input" onClick={changeMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"  defaultChecked={mode==="dark"?true:false}/>

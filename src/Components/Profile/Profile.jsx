@@ -36,7 +36,7 @@ const Profile = () => {
   }
 
   const handleClickDelete = () => {
-    deletePost(pid);
+    deletePost(pid.id);
     showAlert("Post Deleted Successfully", "warning");
   }
 
@@ -53,11 +53,11 @@ const Profile = () => {
 
   return (
     <div className={`bg-${mode} text-${mode === "light" ? "dark" : "light"}`} style={{ height: '100%' }}>
-      <button style={{ backgroundColor: "darkorange" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
+      <button style={{ backgroundColor: "darkturquoise" }} className='btn btn-primary mx-3 mb-5 mt-3' onClick={() => { navigate(-1) }}><i className="fa-solid fa-left-long"></i> Go Back</button>
       <div className='container-fluid'>
         <div className='container'>
           <h2>Profile Settings</h2>
-          <div>
+          <div >
 
           </div>
           <div>
@@ -73,7 +73,7 @@ const Profile = () => {
 
 
       <div className='userpost container'>
-        <h2><u>Posts</u></h2>
+        <h2>My Posts</h2>
         {loading && <Spinner />}
         {userpost.length === 0 && <h2 className='my-5'>You Have No Posts</h2>}
 

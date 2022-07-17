@@ -25,7 +25,7 @@ const UserPost = (props) => {
                 {date}
                 <div>
                     <i className="fa-solid fa-trash-can fa-2x mx-4" style={{ color: "red", cursor: "pointer" }} data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={()=>{props.postid(props.id,props.title,props.description)}}></i>
-                    <i className="fa-solid fa-pen-to-square fa-2x" style={{ color: "blue", cursor: "pointer" }} data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={()=>{props.postid(props.id,props.title,props.description)}}></i>
+                    <i className="fa-solid fa-pen-to-square fa-2x" style={{ color: "green", cursor: "pointer" }} data-bs-toggle="modal" data-bs-target="#exampleModal2" onClick={()=>{props.postid(props.id,props.title,props.description)}}></i>
                 </div>
             </div>
 
