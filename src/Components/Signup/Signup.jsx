@@ -45,7 +45,7 @@ const Signup = () => {
 
             <form onSubmit={submit} autoComplete="off">
 
-              <h1 align="center">Sign-up</h1>
+              <h1 align="center">Join Us...</h1>
               <div className="mb-3 mt-5 w-100">
                 <label htmlFor="username" className="form-label">Username</label>
                 <input type="text" minLength={3} required className="form-control" id="username" onChange={onChange} name="username" aria-describedby="username" />

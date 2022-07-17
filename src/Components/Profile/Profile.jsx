@@ -2,52 +2,61 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AlertContext from '../../context/Alert/AlertContext'
 import PostContext from '../../context/Post/PostContext'
+import UserContext from '../../context/User/UserContext'
 import UserPost from './UserPost'
-import Spinner from '../Spinner/Spinner'
+import UserData from './UserData'
 const Profile = () => {
 
   const navigate = useNavigate()
   const context = useContext(PostContext)
+  const userContext = useContext(UserContext)
+  const { fetchuserdata, userdata } = userContext
   const { userpost, fetchUserPosts, deletePost, updatePost } = context
   const alertcontext = useContext(AlertContext)
   const { mode, showAlert } = alertcontext
 
-  const [pid, setpid] = useState({id:'',title:'',description:''})
+  const [pid, setpid] = useState({ id: '', title: '', description: '' })
   const [data, setdata] = useState({ title: '', description: '' })
-  const [loading, setloading] = useState(false)
+  const [rerender, setrerender] = useState(0)
 
 
-  const fetchuserpost = async () => {
-    setloading(true)
-    await fetchUserPosts()
-    setloading(false)
-  }
 
   useEffect(() => {
+    fetchuserdata()
     fetchUserPosts()
+    console.log("rerender")
     //eslint-disable-next-line
-  }, [userpost])
+  }, [rerender])
 
 
 
-  const postid = (id,title,description) => {
-    setpid({id,title,description})
-    setdata({title,description})
+  const postid = (id, title, description) => {
+    setpid({ id, title, description })
+    setdata({ title, description })
   }
 
   const handleClickDelete = () => {
     deletePost(pid.id);
+    setTimeout(() => {
+      if (rerender === 1)
+        setrerender(0)
+      else setrerender(1)
+    }, 100)
     showAlert("Post Deleted Successfully", "warning");
   }
 
 
   const onChange = (e) => {
-    console.log(data.title + data.description)
     setdata({ ...data, [e.target.name]: e.target.value })
   }
 
   const handleClickUpdate = () => {
     updatePost(data.title, data.description, pid.id)
+    setTimeout(() => {
+      if (rerender === 1)
+        setrerender(0)
+      else setrerender(1)
+    }, 100)
     showAlert("Post Updated", "warning")
   }
 
@@ -58,7 +67,7 @@ const Profile = () => {
         <div className='container'>
           <h2>Profile Settings</h2>
           <div >
-
+            <UserData userdata={userdata} mode={mode} />
           </div>
           <div>
 
@@ -74,14 +83,14 @@ const Profile = () => {
 
       <div className='userpost container'>
         <h2>My Posts</h2>
-        {loading && <Spinner />}
+
         {userpost.length === 0 && <h2 className='my-5'>You Have No Posts</h2>}
 
-        {!loading && <>
-          {userpost.map((element) => {
-            return <UserPost key={element._id} postid={postid} mode={mode} id={element._id} title={element.title} description={element.description} timestamp={element.timestamp} />
-          })}
-        </>}
+
+        {userpost.map((element) => {
+          return <UserPost key={element._id} postid={postid} mode={mode} id={element._id} title={element.title} description={element.description} timestamp={element.timestamp} />
+        })}
+
       </div>
 
 
@@ -89,7 +98,7 @@ const Profile = () => {
 
 
 
-      <div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

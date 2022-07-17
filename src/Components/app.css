@@ -3,15 +3,11 @@
     height: 95vh;
 }
 
-.app .wrapper{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-between;
-}
+
 
 .app .main-page{
     height: 100%;
 }
+
 
 

@@ -26,8 +26,8 @@ const NavBar = () => {
 
             <div className="form-check form-switch">
                 <input className="form-check-input" onClick={changeMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"  defaultChecked={mode==="dark"?true:false}/>
-                <span style={{color:mode==="dark"?"white":"black"}}>Dark </span>
-                <i style={{color:mode==="dark"?"white":"black"}} className="fa-solid fa-moon"></i>
+                <span style={{color:mode==="dark"?"darkturquoise":"black"}}>Dark </span>
+                <i style={{color:mode==="dark"?"darkturquoise":"black"}} className="fa-solid fa-moon"></i>
             </div>
 
             <div className='nav-links'>

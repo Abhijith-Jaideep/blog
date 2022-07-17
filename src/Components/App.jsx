@@ -31,17 +31,13 @@ const App = () => {
 
 				<Routes>
 					<Route path="/*" element={
-						<div>
+						<>
 							<div className="app">
 
 								<NavBar />
 
-								<div className="wrapper">
-
-									<div className='main-page'>
-										<MainPage mode={mode} />
-									</div>
-
+								<div className='main-page w-100'>
+									<MainPage mode={mode} />
 								</div>
 
 							</div>
@@ -49,7 +45,7 @@ const App = () => {
 							<div className="footer">
 								<Footer mode={mode} />
 							</div>
-						</div>
+						</>
 
 					} />
 
