@@ -14,7 +14,7 @@ const Signup = () => {
   const { signup } = context
   const { showAlert, mode } = alertcontext
 
-  const [info, setinfo] = useState({ username: "", password: "" })
+  const [info, setinfo] = useState({ username: "", password: "", confirmpassword: '' })
 
   const onChange = (e) => {
     setinfo({ ...info, [e.target.name]: e.target.value })
@@ -22,10 +22,17 @@ const Signup = () => {
 
 
   const submit = (e) => {
-    e.preventDefault()
-    signup(info.username, info.password)
-    showAlert("User signup registration successfull", "primary")
-    navigate(-1)
+    if (info.password !== info.confirmpassword) {
+      console.log(info.password + "==" + info.confirmpassword)
+      showAlert("password mismatch!", 'danger')
+      return 0;
+    }
+    else {
+      e.preventDefault()
+      signup(info.username, info.password)
+      showAlert("User signup registration successfull", "primary")
+      navigate(-1)
+    }
   }
 
   return (
@@ -51,10 +58,16 @@ const Signup = () => {
                 <input type="text" minLength={3} required className="form-control" id="username" onChange={onChange} name="username" aria-describedby="username" />
               </div>
 
-              <div className="mb-5 w-100">
+              <div className="mb-3 w-100">
                 <label htmlFor="password" className="form-label">Password</label>
                 <input type="password" minLength={8} required className="form-control" name="password" onChange={onChange} id="password" />
               </div>
+
+              <div className="mb-5 w-100">
+                <label htmlFor="confirmpassword" className="form-label">Confirm Password</label>
+                <input type="password" minLength={8} required className="form-control" name="confirmpassword" onChange={onChange} id="confirmpassword" />
+              </div>
+
 
               <button type="submit" className="signupbtn w-50 p-2 ">signup</button>
 

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import PostStates from '../../context/Post/PostStates'
 import Feed from './Feed/Feed'
 import Landing from './Landing/Landing'
+import PostDetail from './PostDetail/PostDetail'
 
 
 const MainPage = (props) => {
@@ -18,6 +19,8 @@ const MainPage = (props) => {
                         <Feed />
                     </PostStates>
                 } />
+
+                <Route path="feed/post" element={<PostDetail/>}/>
 
             </Routes>
         </div>

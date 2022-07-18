@@ -60,5 +60,15 @@ router.get("/fetch", fetchUser, async (req, res) => {
     } catch (e) { res.status(500) }
 })
 
+router.post("/fetchbyid", async (req, res) => {
+    try {
+
+        const user = await usermodel.findById(req.body.id)
+        if (!user) return res.status(400).json({ msg: "user not found" })
+
+        return res.json(user)
+    } catch (e) { res.status(500) }
+})
+
 
 module.exports = router

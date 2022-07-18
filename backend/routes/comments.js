@@ -1,6 +1,7 @@
 const express = require("express")
 const fetchUser = require("../middleware/fetchUser")
 const commentmodel = require("../models/Comments")
+const usermodel = require("../models/User")
 const router = express.Router()
 
 router.get("/fetchComments/:id", async (req, res) => {
@@ -11,8 +12,8 @@ router.get("/fetchComments/:id", async (req, res) => {
         const comments = await commentmodel.find({ postid }).sort({'timestamp':-1})
 
         if (!comments) return res.status(400).json({ msg: "no comments for this post" })
-
         return res.json(comments)
+
     } catch (e) { res.status(500) }
 })
 
@@ -21,10 +22,14 @@ router.post("/postComment/:id", fetchUser, async (req, res) => {
 
         const postid = req.params.id
         const userid = req.id
+
+
         const { comment } = req.body
 
+        const user = await usermodel.findById(userid)
+        if(!user) return res.json({msg:"user not found"})
         const completed = await commentmodel.create({
-            postid, userid, comment
+            postid, username:user.username, comment
         })
 
         if (!completed) return res.status(400).json({ msg: "comment could not be posted" })

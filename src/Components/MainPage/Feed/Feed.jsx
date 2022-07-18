@@ -1,4 +1,4 @@
-import React, { useContext, useEffect ,useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PostContext from '../../../context/Post/PostContext'
 import Spinner from '../../Spinner/Spinner'
 import PostItem from './PostItem'
@@ -10,7 +10,7 @@ const Feed = () => {
   const [loading, setloading] = useState(false)
 
 
-  const fetchposts =async  ()=>{
+  const fetchposts = async () => {
     setloading(true)
     await fetchAllPosts()
     setloading(false)
@@ -23,11 +23,16 @@ const Feed = () => {
   }, [])
 
   return (
-    <div style={{ height: "95vh" ,overflowY:"scroll"}}>
-      {loading&&<Spinner />}
+    <div style={{ height: "95vh", overflowY: "scroll" }}>
+      <div className="container">
+        {posts.length === 0 && <h1>No Posts in the blog</h1>}
+      </div>
+
+      {loading && <Spinner />}
+      
       {
         posts.map((element) => {
-          return <PostItem key={element._id} name={element.name} title={element.title} description={element.description} timestamp={element.timestamp} />
+          return <PostItem key={element._id} id={element._id} name={element.name} title={element.title} description={element.description} timestamp={element.timestamp} />
         })}
 
     </div>

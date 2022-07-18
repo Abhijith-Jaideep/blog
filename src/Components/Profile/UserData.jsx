@@ -12,7 +12,7 @@ const UserData = (props) => {
         setdate(new Date(props.userdata.timestamp).toLocaleDateString('en-In', { timeZone: 'Asia/Kolkata' }))
         setTimeout(() => {
             if (rerender === 0) setrerender(1)
-        }, 100)
+        }, 200)
     }
 
     useEffect(() => {

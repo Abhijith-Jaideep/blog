@@ -4,11 +4,23 @@ const router = express.Router()
 const postmodel = require("../models/Posts")
 const usermodel = require("../models/User")
 
+router.get("/fetchonepost/:id", async (req, res) => {
+    try {
+        const id = req.params.id
+        
+        const post = await postmodel.findById(id)
+        
+        if(!post) return res.json({msg:"post not found"})
+
+        return res.json(post)
+    } catch (e) { res.status(500) }
+})
+
 //retrive all posts in the blog
 router.get("/allPosts", async (req, res) => {
     try {
 
-        const posts = await postmodel.find().sort({'timestamp':-1})
+        const posts = await postmodel.find().sort({ 'timestamp': -1 })
         if (!posts) return res.status(400).json({ msg: "no posts to display" })
 
         return res.json(posts)
@@ -22,7 +34,7 @@ router.get("/getUserPosts", fetchUser, async (req, res) => {
 
         const userid = req.id
 
-        const posts = await postmodel.find({ userid }).sort({'timestamp':-1})
+        const posts = await postmodel.find({ userid }).sort({ 'timestamp': -1 })
 
         if (!posts) return res.status(400).json({ msg: "No posts for this user" })
 
@@ -82,7 +94,7 @@ router.put("/updatePost/:id", fetchUser, async (req, res) => {
         if (post.userid != userid) return res.status(401).json({ msg: "illegal operation" })
 
         const updated = await postmodel.updateOne({ _id: postid }, {
-            title, description,timestamp:Date.now()
+            title, description, timestamp: Date.now()
         })
 
         if (!updated) return res.json

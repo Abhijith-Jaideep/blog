@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import AlertContext from '../../../context/Alert/AlertContext'
+import CommentSection from './CommentSection/CommentSection'
 import postimg from "./postimg.jpg"
 
-const PostItem = (props) => {
+const Post = (props) => {
 
     const [date, setdate] = useState('')
+    const [rerender, setrerender] = useState(0)
 
     const context = useContext(AlertContext)
     const { mode } = context
 
-    useEffect(() => {
+
+    const calcdate = () => {
         setdate(new Date(props.timestamp).toLocaleString("en-IN", { timeZone: 'Asia/Kolkata' }))
+        setTimeout(() => {
+            if (rerender === 0) setrerender(1)
+        }, 200)
+    }
+
+    useEffect(() => {
+        calcdate()
         // eslint-disable-next-line
-    }, [])
+    }, [rerender])
 
     return (
         <div className='container my-3 d-flex' style={{ justifyContent: "center" }}>
@@ -31,20 +40,23 @@ const PostItem = (props) => {
 
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: "center",height: "400px" }}>
+                <div style={{ display: 'flex', justifyContent: "center", height: "400px" }}>
                     <img src={postimg} width="100%" alt="postimg" />
                 </div>
                 <div className="card-body">
                     <h3>{props.title}</h3>
-                    <div>
-                        <p className="card-text">{props.description}</p>
-                        <Link to="./post" onClick={()=>{localStorage.setItem("postid",props.id)}}><i className="fa-solid fa-comment-dots fa-2x" style={{color:mode==='light'?'black':'white',cursor:"pointer"}}></i></Link>
-                        <i className="fa-solid fa-heart fa-2x mx-5" style={{cursor:"pointer"}}></i>
+                    <p>
+                        {props.description}
+                    </p>
+
+                    <div className="card-footer bg-light">
+                        <CommentSection />
                     </div>
+
                 </div>
             </div>
         </div>
     )
 }
 
-export default PostItem
+export default Post
