@@ -29,7 +29,7 @@ const Feed = () => {
       </div>
 
       {loading && <Spinner />}
-      
+
       {
         posts.map((element) => {
           return <PostItem key={element._id} id={element._id} name={element.name} title={element.title} description={element.description} timestamp={element.timestamp} />

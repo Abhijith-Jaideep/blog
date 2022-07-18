@@ -2,6 +2,7 @@ const express = require("express")
 const fetchUser = require("../middleware/fetchUser")
 const commentmodel = require("../models/Comments")
 const usermodel = require("../models/User")
+const axios = require('axios').default
 const router = express.Router()
 
 router.get("/fetchComments/:id", async (req, res) => {
@@ -9,7 +10,7 @@ router.get("/fetchComments/:id", async (req, res) => {
 
         const postid = req.params.id
 
-        const comments = await commentmodel.find({ postid }).sort({'timestamp':-1})
+        const comments = await commentmodel.find({ postid }).sort({ 'timestamp': -1 })
 
         if (!comments) return res.status(400).json({ msg: "no comments for this post" })
         return res.json(comments)
@@ -23,18 +24,27 @@ router.post("/postComment/:id", fetchUser, async (req, res) => {
         const postid = req.params.id
         const userid = req.id
 
-
         const { comment } = req.body
 
+        const  safe = await axios.post(
+            'http://localhost:7000/',
+            {
+                body: JSON.stringify({comment}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        if(safe.data.msg==="Negative") return res.json({msg:"Negative comment"})
         const user = await usermodel.findById(userid)
-        if(!user) return res.json({msg:"user not found"})
+        if (!user) return res.json({ msg: "user not found" })
         const completed = await commentmodel.create({
-            postid, username:user.username, comment
+            postid, username: user.username, comment
         })
 
         if (!completed) return res.status(400).json({ msg: "comment could not be posted" })
 
-        res.json({ msg: "comment posted" })
+        return res.json({ msg: "Positive Comment" })
 
     } catch (e) { res.status(500) }
 })

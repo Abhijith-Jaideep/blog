@@ -49,7 +49,7 @@ const Post = (props) => {
                         {props.description}
                     </p>
 
-                    <div className="card-footer bg-light">
+                    <div className={`card-footer bg-${mode}`}>
                         <CommentSection />
                     </div>
 
